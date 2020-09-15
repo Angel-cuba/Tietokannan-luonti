@@ -9,6 +9,15 @@
     <TabControl x:Name="tabControl">
         <TabItem Header="Kurssit">
             <Grid Background="Azure">
+                <Label x:Name="label" Content="Kurssin nimi:" HorizontalAlignment="Left" Margin="30,10,0,0" VerticalAlignment="Top" Width="82" />
+                <TextBox x:Name="textBoxKurssinnimi" HorizontalAlignment="Left" Height="23" Width="190" Margin="166,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+
+                <Label x:Name="label1" Content="Alkamispäivä" HorizontalAlignment="Left" Margin="30,60,0,0" VerticalAlignment="Top"/>
+                <DatePicker x:Name="DatePickerAlkamisPvm" HorizontalAlignment="Left" Width="190" Margin="166, 60,0,0" VerticalAlignment="Top"/>
+
+                <Label x:Name="label2" Content="Alkamispäivä" HorizontalAlignment="Left" Margin="30,110,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.519, -0.019"/>
+                <DatePicker x:Name="DatePickerPaattymisPvm" HorizontalAlignment="Left" Margin="166,110,0,0" VerticalAlignment="Top" Width="190"/>
+                <Button x:Name="buttonLisaa" Content="Lisää" HorizontalAlignment="Left" Margin="166,151,0,0" VerticalAlignment="Top" Width="190" Click="buttonLisaa_Click"/>
             </Grid>
         </TabItem>
         <TabItem Header="Oppilaat">

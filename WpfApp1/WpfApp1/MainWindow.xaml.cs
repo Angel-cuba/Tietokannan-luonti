@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Tietokanta
+namespace WpfApp1
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -23,11 +23,6 @@ namespace Tietokanta
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void buttonLisaa_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
