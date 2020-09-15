@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+//Lisää koodi
+using System.Collections.ObjectModel;
+using System.Data;
 
 namespace WpfApp1
 {
@@ -20,6 +23,9 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ObservableCollection<Kurssi> kurssit = new ObservableCollection<Kurssi>();
+        private DataSet1 set = new DataSet1();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -36,6 +42,30 @@ namespace WpfApp1
             ds.Kurssi.AddKurssiRow(rivi);
             DataSet1TableAdapters.KurssiTableAdapter adap = new DataSet1TableAdapters.KurssiTableAdapter();
             adap.Update(ds.Kurssi);
+            HaeData();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            HaeData();
+        }
+        private void HaeData()
+        {
+            DataSet1 ds = new DataSet1();
+            DataSet1TableAdapters.KurssiTableAdapter adap = new DataSet1TableAdapters.KurssiTableAdapter();
+            kurssit.Clear();
+
+            adap.Fill(ds.Kurssi);
+            foreach (DataRow row in ds.Tables["Kurssi"].Rows)
+            {
+                Kurssi k = new Kurssi();
+                k.Id = int.Parse(row["Id"].ToString());
+                k.Kurssinnimi = row["Kurssinnimi"].ToString();
+                k.Alkamispvm = DateTime.Parse(row["Alkamispvm"].ToString());
+                k.Paattymispvm = DateTime.Parse(row["Paattymispvm"].ToString());
+                kurssit.Add(k);
+            }
+            this.listView.ItemsSource = kurssit;
         }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Tietokanta" Height="450" Width="625" Background="GreenYellow">
+        Title="Tietokanta" Height="450" Width="625" Background="GreenYellow" Loaded="Window_Loaded">
     <TabControl x:Name="tabControl">
         <TabItem Header="Kurssit">
             <Grid Background="Azure">
@@ -18,6 +18,18 @@
                 <Label x:Name="label2" Content="Alkamispäivä" HorizontalAlignment="Left" Margin="30,110,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.519, -0.019"/>
                 <DatePicker x:Name="DatePickerPaattymisPvm" HorizontalAlignment="Left" Margin="166,110,0,0" VerticalAlignment="Top" Width="190"/>
                 <Button x:Name="buttonLisaa" Content="Lisää" HorizontalAlignment="Left" Margin="166,151,0,0" VerticalAlignment="Top" Width="190" Click="buttonLisaa_Click"/>
+
+                <ListView x:Name="listView" HorizontalAlignment="Left" Height="64" Margin="50,202,0,0" VerticalAlignment="Top" Width="412">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}"/>
+                            <GridViewColumn Header="Kurssin nimi" DisplayMemberBinding="{Binding Kurssinnimi}"/>
+                            <GridViewColumn Header="Alkamispäivä" DisplayMemberBinding="{Binding Alkamispvm}"/>
+                            <GridViewColumn Header="Paattymispäivä" DisplayMemberBinding="{Binding Paattymispvm}"/>
+                        </GridView>
+                    </ListView.View>
+                    
+                </ListView>
             </Grid>
         </TabItem>
         <TabItem Header="Oppilaat">
