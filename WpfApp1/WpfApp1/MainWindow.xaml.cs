@@ -24,5 +24,18 @@ namespace WpfApp1
         {
             InitializeComponent();
         }
+
+        private void buttonLisaa_Click(object sender, RoutedEventArgs e)
+        {
+            DataSet1 ds = new DataSet1();
+            DataSet1.KurssiRow rivi = ds.Kurssi.NewKurssiRow();
+
+            rivi.Kurssinnimi = this.textBoxKurssinnimi.Text;
+            rivi.Alkamispvm = this.DatePickerAlkamisPvm.SelectedDate.Value;
+            rivi.Paattymispvm = this.DatePickerPaattymisPvm.SelectedDate.Value;
+            ds.Kurssi.AddKurssiRow(rivi);
+            DataSet1TableAdapters.KurssiTableAdapter adap = new DataSet1TableAdapters.KurssiTableAdapter();
+            adap.Update(ds.Kurssi);
+        }
     }
 }
