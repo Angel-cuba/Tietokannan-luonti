@@ -64,6 +64,23 @@ namespace WpfApp1
         {
             HaeData();
         }
+
+
+        //-----------------------------------------------------------
+        private void TyhjaaKurssiLiittyma()
+        {
+            this.textBoxKurssinnimi.Text = "";
+            this.DatePickerAlkamisPvm.SelectedDate = null;
+            this.DatePickerPaattymisPvm.SelectedDate = null;
+        }
+        private void TyhjaaOppilasLiittyma()
+        {
+            this.textBoxEtunimi.Text = "";
+            this.textBoxSukunimi.Text = "";
+            this.textBoxSähköposti.Text = "";
+        }
+        //------------------------------------------------------------
+
         private void HaeData()
 
         {
@@ -99,7 +116,7 @@ namespace WpfApp1
             DataSet1TableAdapters.OppilaatTableAdapter adap2 = new DataSet1TableAdapters.OppilaatTableAdapter();
             oppilaat.Clear();
             adap2.Fill(ds.Oppilaat); 
-            foreach (DataRow row in ds.Tables["Oppilas"].Rows)
+            foreach (DataRow row in ds.Tables["Oppilaat"].Rows)
             {
                 Oppilas o = new Oppilas();
                 o.Id = int.Parse(row["Id"].ToString());
@@ -110,6 +127,11 @@ namespace WpfApp1
                 oppilaat.Add(o);
             }
             this.listViewOppilaat.ItemsSource = oppilaat;
+
+            //Inicializar datos con esta función, estas funciones están definidas arriba
+            TyhjaaKurssiLiittyma();
+            TyhjaaOppilasLiittyma();
+
         }
 
         private void buttonMutta_Click(object sender, RoutedEventArgs e)
@@ -164,7 +186,7 @@ namespace WpfApp1
 
         private void buttonLisaaOppilas_Click(object sender, RoutedEventArgs e)
         {
-            if (comboBoxKurssi.SelectedIndex > 0)
+            if (comboBoxKurssi.SelectedIndex != 0)
             {
                 DataSet1 ds = new DataSet1();
                 DataSet1.OppilaatRow rivi = ds.Oppilaat.NewOppilaatRow();
@@ -183,7 +205,57 @@ namespace WpfApp1
 
         private void buttonMuutaOppilas_Click(object sender, RoutedEventArgs e)
         {
+            if (this.listViewOppilaat.SelectedIndex != -1) // jokin rivi on valittu
+            {
+                int index = 0;
+                foreach (Kurssi k in kurssit)
+                {
+                    if (k.Id == ((this.listViewOppilaat.Items[this.listViewOppilaat.SelectedIndex] as Oppilas).KurssiId))
+                    {
+                        break;
+                    }
+                    index++;
+                }
+                this.comboBoxKurssi.SelectedIndex = index + 1;
+                this.textBoxEtunimi.Text = (this.listViewOppilaat.Items[this.listViewOppilaat.SelectedIndex] as Oppilas).Etunimi;
+                this.textBoxSukunimi.Text = (this.listViewOppilaat.Items[this.listViewOppilaat.SelectedIndex] as Oppilas).Sukunimi;
+                this.textBoxSähköposti.Text = (this.listViewOppilaat.Items[this.listViewOppilaat.SelectedIndex] as Oppilas).Sahkoposti;
 
+                this.buttonMuutaOppilas.Visibility = Visibility.Hidden;
+                //Cambio de VISIVILIDAD con el BUTTON de cambiar o guardar
+                this.buttonTallennaOppilas.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void buttonTallennaOppilas_Click(object sender, RoutedEventArgs e)
+        {
+            DataSet1 ds = new DataSet1();
+            DataSet1TableAdapters.OppilaatTableAdapter adap = new DataSet1TableAdapters.OppilaatTableAdapter();
+            adap.Fill(ds.Oppilaat);
+            string strkurssi = this.comboBoxKurssi.Text;
+            int paikka = strkurssi.IndexOf(' ');
+            int KurssiId = int.Parse(strkurssi.Substring(0, paikka));
+            ds.Tables["Oppilas"].Rows[this.listViewOppilaat.SelectedIndex]["KurssiId"] = KurssiId;
+            ds.Tables["Oppilas"].Rows[this.listViewOppilaat.SelectedIndex]["Etunimi"] = this.textBoxEtunimi.Text;
+            ds.Tables["Oppilas"].Rows[this.listViewOppilaat.SelectedIndex]["Sukunimi"] = this.textBoxSukunimi.Text;
+            ds.Tables["Oppilas"].Rows[this.listViewOppilaat.SelectedIndex]["Sahkoposti"] = this.textBoxSähköposti.Text;
+            adap.Update(ds.Oppilaat);
+            HaeData();
+            this.buttonMuutaOppilas.Visibility = Visibility.Visible;
+            this.buttonTallennaOppilas.Visibility = Visibility.Hidden;
+        }
+
+        private void buttonPoistaOppilas_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.listViewOppilaat.SelectedIndex != -1)//jokin rivi on valittu
+            {
+                DataSet1 ds = new DataSet1();
+                DataSet1TableAdapters.OppilaatTableAdapter adap = new DataSet1TableAdapters.OppilaatTableAdapter();
+                adap.Fill(ds.Oppilaat);
+                ds.Tables["Oppilas"].Rows[this.listViewOppilaat.SelectedIndex].Delete();
+                adap.Update(ds.Oppilaat);
+                HaeData();
+            }
         }
     }
 }

@@ -65,7 +65,9 @@
                         </GridView>
                     </ListView.View>
                  </ListView>
-                <Button x:Name="buttonMuutaOppilas" Content="Muuta" HorizontalAlignment="Left" Margin="299,220,0,0" VerticalAlignment="Top" Width="75" Click="buttonMuutaOppilas_Click"/>
+                <Button x:Name="buttonMuutaOppilas" Content="Muuta" HorizontalAlignment="Left" Margin="299,220,0,0" VerticalAlignment="Top" Width="75" Background="LightCyan" Click="buttonMuutaOppilas_Click"/>
+                <Button x:Name="buttonTallennaOppilas" Content="Tallenna" HorizontalAlignment="Left" Margin="299,194,0,0" Visibility="Hidden" VerticalAlignment="Top" Width="75" Background="LightCyan" Click="buttonTallennaOppilas_Click"/>
+                <Button x:Name="buttonPoistaOppilas" Content="Poista" HorizontalAlignment="Left" Margin="22,220,0,0" VerticalAlignment="Top" Width="55" Background="LightCyan" Click="buttonPoistaOppilas_Click"/>
             </Grid>
         </TabItem>
     </TabControl>
