@@ -257,5 +257,10 @@ namespace WpfApp1
                 HaeData();
             }
         }
+
+        private void comboBoxKurssi_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

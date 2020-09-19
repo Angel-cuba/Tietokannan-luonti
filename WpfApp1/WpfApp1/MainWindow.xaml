@@ -37,7 +37,7 @@
         </TabItem>
         <TabItem Header="Oppilaat">
             <Grid Background="LightBlue">
-                <ComboBox x:Name="comboBoxKurssi" HorizontalAlignment="Left" Margin="112,27,0,0" VerticalAlignment="Top" Width="120"/>
+                <ComboBox x:Name="comboBoxKurssi" HorizontalAlignment="Left" Margin="112,27,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="comboBoxKurssi_SelectionChanged"/>
                 
                 <!--Aqui va la parte del SUKUNIMI-->
                 <Label x:Name="label3" Content="Etunimi" HorizontalAlignment="Left" Margin="19,70,0,0" VerticalAlignment="Top"/>
