@@ -56,7 +56,7 @@
                 <ListView x:Name="listViewOppilaat" HorizontalAlignment="Left" Height="101" Margin="19,270,0,0" VerticalAlignment="Top" Width="432">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Width="16" Header="Id" DisplayMemberBinding="{Binding Id}"/>
+                        <GridViewColumn Width="23" Header="Id" DisplayMemberBinding="{Binding Id}"/>
                         <GridViewColumn Width="101" Header="KurssiId" DisplayMemberBinding="{Binding KurssiId}"/>
                             <GridViewColumn Width="105" Header="Etunimi" DisplayMemberBinding="{Binding Etunimi}"/>
                             <GridViewColumn Width="105" Header="Sukunimi" DisplayMemberBinding="{Binding Sukunimi}"/>

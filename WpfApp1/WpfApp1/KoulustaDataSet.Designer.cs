@@ -20,9 +20,9 @@ namespace WpfApp1 {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("DataSet1")]
+    [global::System.Xml.Serialization.XmlRootAttribute("KoulustaDataSet")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class DataSet1 : global::System.Data.DataSet {
+    public partial class KoulustaDataSet : global::System.Data.DataSet {
         
         private KurssiDataTable tableKurssi;
         
@@ -32,7 +32,7 @@ namespace WpfApp1 {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public DataSet1() {
+        public KoulustaDataSet() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -43,7 +43,7 @@ namespace WpfApp1 {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        protected DataSet1(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected KoulustaDataSet(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -142,7 +142,7 @@ namespace WpfApp1 {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            DataSet1 cln = ((DataSet1)(base.Clone()));
+            KoulustaDataSet cln = ((KoulustaDataSet)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -223,9 +223,9 @@ namespace WpfApp1 {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "DataSet1";
+            this.DataSetName = "KoulustaDataSet";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/DataSet1.xsd";
+            this.Namespace = "http://tempuri.org/KoulustaDataSet.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableKurssi = new KurssiDataTable();
@@ -257,7 +257,7 @@ namespace WpfApp1 {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            DataSet1 ds = new DataSet1();
+            KoulustaDataSet ds = new KoulustaDataSet();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -553,7 +553,7 @@ namespace WpfApp1 {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                DataSet1 ds = new DataSet1();
+                KoulustaDataSet ds = new KoulustaDataSet();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -739,10 +739,10 @@ namespace WpfApp1 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public OppilaatRow AddOppilaatRow(int Id, int KurssiId, string Etunimi, string Sukunimi, string Sahkoposti) {
+            public OppilaatRow AddOppilaatRow(int KurssiId, string Etunimi, string Sukunimi, string Sahkoposti) {
                 OppilaatRow rowOppilaatRow = ((OppilaatRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        Id,
+                        null,
                         KurssiId,
                         Etunimi,
                         Sukunimi,
@@ -798,8 +798,13 @@ namespace WpfApp1 {
                 base.Columns.Add(this.columnSahkoposti);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnId}, true));
+                this.columnId.AutoIncrement = true;
+                this.columnId.AutoIncrementSeed = -1;
+                this.columnId.AutoIncrementStep = -1;
                 this.columnId.AllowDBNull = false;
+                this.columnId.ReadOnly = true;
                 this.columnId.Unique = true;
+                this.columnKurssiId.AllowDBNull = false;
                 this.columnEtunimi.MaxLength = 50;
                 this.columnSukunimi.MaxLength = 50;
                 this.columnSahkoposti.MaxLength = 50;
@@ -870,7 +875,7 @@ namespace WpfApp1 {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                DataSet1 ds = new DataSet1();
+                KoulustaDataSet ds = new KoulustaDataSet();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -1068,12 +1073,7 @@ namespace WpfApp1 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public int KurssiId {
                 get {
-                    try {
-                        return ((int)(this[this.tableOppilaat.KurssiIdColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'KurssiId\' in table \'Oppilaat\' is DBNull.", e);
-                    }
+                    return ((int)(this[this.tableOppilaat.KurssiIdColumn]));
                 }
                 set {
                     this[this.tableOppilaat.KurssiIdColumn] = value;
@@ -1126,18 +1126,6 @@ namespace WpfApp1 {
                 set {
                     this[this.tableOppilaat.SahkopostiColumn] = value;
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsKurssiIdNull() {
-                return this.IsNull(this.tableOppilaat.KurssiIdColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetKurssiIdNull() {
-                this[this.tableOppilaat.KurssiIdColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1246,7 +1234,7 @@ namespace WpfApp1 {
         }
     }
 }
-namespace WpfApp1.DataSet1TableAdapters {
+namespace WpfApp1.KoulustaDataSetTableAdapters {
     
     
     /// <summary>
@@ -1434,7 +1422,7 @@ SELECT Id, Kurssinnimi, Alkamispvm, Paattymispvm FROM Kurssi WHERE (Id = @Id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(DataSet1.KurssiDataTable dataTable) {
+        public virtual int Fill(KoulustaDataSet.KurssiDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1447,9 +1435,9 @@ SELECT Id, Kurssinnimi, Alkamispvm, Paattymispvm FROM Kurssi WHERE (Id = @Id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual DataSet1.KurssiDataTable GetData() {
+        public virtual KoulustaDataSet.KurssiDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            DataSet1.KurssiDataTable dataTable = new DataSet1.KurssiDataTable();
+            KoulustaDataSet.KurssiDataTable dataTable = new KoulustaDataSet.KurssiDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -1457,14 +1445,14 @@ SELECT Id, Kurssinnimi, Alkamispvm, Paattymispvm FROM Kurssi WHERE (Id = @Id)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(DataSet1.KurssiDataTable dataTable) {
+        public virtual int Update(KoulustaDataSet.KurssiDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(DataSet1 dataSet) {
+        public virtual int Update(KoulustaDataSet dataSet) {
             return this.Adapter.Update(dataSet, "Kurssi");
         }
         
@@ -1771,10 +1759,9 @@ SELECT Id, Kurssinnimi, Alkamispvm, Paattymispvm FROM Kurssi WHERE (Id = @Id)";
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Oppilaat] WHERE (([Id] = @Original_Id) AND ((@IsNull_KurssiId = 1 AND [KurssiId] IS NULL) OR ([KurssiId] = @Original_KurssiId)) AND ((@IsNull_Etunimi = 1 AND [Etunimi] IS NULL) OR ([Etunimi] = @Original_Etunimi)) AND ((@IsNull_Sukunimi = 1 AND [Sukunimi] IS NULL) OR ([Sukunimi] = @Original_Sukunimi)) AND ((@IsNull_Sahkoposti = 1 AND [Sahkoposti] IS NULL) OR ([Sahkoposti] = @Original_Sahkoposti)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Oppilaat] WHERE (([Id] = @Original_Id) AND ([KurssiId] = @Original_KurssiId) AND ((@IsNull_Etunimi = 1 AND [Etunimi] IS NULL) OR ([Etunimi] = @Original_Etunimi)) AND ((@IsNull_Sukunimi = 1 AND [Sukunimi] IS NULL) OR ([Sukunimi] = @Original_Sukunimi)) AND ((@IsNull_Sahkoposti = 1 AND [Sahkoposti] IS NULL) OR ([Sahkoposti] = @Original_Sahkoposti)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_KurssiId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "KurssiId", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_KurssiId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "KurssiId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Etunimi", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Etunimi", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Etunimi", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Etunimi", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -1784,27 +1771,24 @@ SELECT Id, Kurssinnimi, Alkamispvm, Paattymispvm FROM Kurssi WHERE (Id = @Id)";
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Sahkoposti", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Sahkoposti", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Oppilaat] ([Id], [KurssiId], [Etunimi], [Sukunimi], [Sahkopost" +
-                "i]) VALUES (@Id, @KurssiId, @Etunimi, @Sukunimi, @Sahkoposti);\r\nSELECT Id, Kurss" +
-                "iId, Etunimi, Sukunimi, Sahkoposti FROM Oppilaat WHERE (Id = @Id)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Oppilaat] ([KurssiId], [Etunimi], [Sukunimi], [Sahkoposti]) VA" +
+                "LUES (@KurssiId, @Etunimi, @Sukunimi, @Sahkoposti);\r\nSELECT Id, KurssiId, Etunim" +
+                "i, Sukunimi, Sahkoposti FROM Oppilaat WHERE (Id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@KurssiId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "KurssiId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Etunimi", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Etunimi", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Sukunimi", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Sukunimi", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Sahkoposti", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Sahkoposti", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Oppilaat] SET [Id] = @Id, [KurssiId] = @KurssiId, [Etunimi] = @Etunimi, [Sukunimi] = @Sukunimi, [Sahkoposti] = @Sahkoposti WHERE (([Id] = @Original_Id) AND ((@IsNull_KurssiId = 1 AND [KurssiId] IS NULL) OR ([KurssiId] = @Original_KurssiId)) AND ((@IsNull_Etunimi = 1 AND [Etunimi] IS NULL) OR ([Etunimi] = @Original_Etunimi)) AND ((@IsNull_Sukunimi = 1 AND [Sukunimi] IS NULL) OR ([Sukunimi] = @Original_Sukunimi)) AND ((@IsNull_Sahkoposti = 1 AND [Sahkoposti] IS NULL) OR ([Sahkoposti] = @Original_Sahkoposti)));
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Oppilaat] SET [KurssiId] = @KurssiId, [Etunimi] = @Etunimi, [Sukunimi] = @Sukunimi, [Sahkoposti] = @Sahkoposti WHERE (([Id] = @Original_Id) AND ([KurssiId] = @Original_KurssiId) AND ((@IsNull_Etunimi = 1 AND [Etunimi] IS NULL) OR ([Etunimi] = @Original_Etunimi)) AND ((@IsNull_Sukunimi = 1 AND [Sukunimi] IS NULL) OR ([Sukunimi] = @Original_Sukunimi)) AND ((@IsNull_Sahkoposti = 1 AND [Sahkoposti] IS NULL) OR ([Sahkoposti] = @Original_Sahkoposti)));
 SELECT Id, KurssiId, Etunimi, Sukunimi, Sahkoposti FROM Oppilaat WHERE (Id = @Id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@KurssiId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "KurssiId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Etunimi", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Etunimi", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Sukunimi", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Sukunimi", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Sahkoposti", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Sahkoposti", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_KurssiId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "KurssiId", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_KurssiId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "KurssiId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Etunimi", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Etunimi", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Etunimi", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Etunimi", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -1812,6 +1796,7 @@ SELECT Id, KurssiId, Etunimi, Sukunimi, Sahkoposti FROM Oppilaat WHERE (Id = @Id
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Sukunimi", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Sukunimi", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Sahkoposti", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Sahkoposti", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Sahkoposti", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Sahkoposti", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1835,7 +1820,7 @@ SELECT Id, KurssiId, Etunimi, Sukunimi, Sahkoposti FROM Oppilaat WHERE (Id = @Id
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(DataSet1.OppilaatDataTable dataTable) {
+        public virtual int Fill(KoulustaDataSet.OppilaatDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1848,9 +1833,9 @@ SELECT Id, KurssiId, Etunimi, Sukunimi, Sahkoposti FROM Oppilaat WHERE (Id = @Id
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual DataSet1.OppilaatDataTable GetData() {
+        public virtual KoulustaDataSet.OppilaatDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            DataSet1.OppilaatDataTable dataTable = new DataSet1.OppilaatDataTable();
+            KoulustaDataSet.OppilaatDataTable dataTable = new KoulustaDataSet.OppilaatDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -1858,14 +1843,14 @@ SELECT Id, KurssiId, Etunimi, Sukunimi, Sahkoposti FROM Oppilaat WHERE (Id = @Id
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(DataSet1.OppilaatDataTable dataTable) {
+        public virtual int Update(KoulustaDataSet.OppilaatDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(DataSet1 dataSet) {
+        public virtual int Update(KoulustaDataSet dataSet) {
             return this.Adapter.Update(dataSet, "Oppilaat");
         }
         
@@ -1888,39 +1873,32 @@ SELECT Id, KurssiId, Etunimi, Sukunimi, Sahkoposti FROM Oppilaat WHERE (Id = @Id
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_Id, global::System.Nullable<int> Original_KurssiId, string Original_Etunimi, string Original_Sukunimi, string Original_Sahkoposti) {
+        public virtual int Delete(int Original_Id, int Original_KurssiId, string Original_Etunimi, string Original_Sukunimi, string Original_Sahkoposti) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_Id));
-            if ((Original_KurssiId.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_KurssiId.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
+            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_KurssiId));
             if ((Original_Etunimi == null)) {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_Etunimi));
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_Etunimi));
             }
             if ((Original_Sukunimi == null)) {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_Sukunimi));
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((string)(Original_Sukunimi));
             }
             if ((Original_Sahkoposti == null)) {
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[8].Value = ((string)(Original_Sahkoposti));
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((string)(Original_Sahkoposti));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1942,31 +1920,25 @@ SELECT Id, KurssiId, Etunimi, Sukunimi, Sahkoposti FROM Oppilaat WHERE (Id = @Id
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int Id, global::System.Nullable<int> KurssiId, string Etunimi, string Sukunimi, string Sahkoposti) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(Id));
-            if ((KurssiId.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((int)(KurssiId.Value));
-            }
-            else {
+        public virtual int Insert(int KurssiId, string Etunimi, string Sukunimi, string Sahkoposti) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(KurssiId));
+            if ((Etunimi == null)) {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((Etunimi == null)) {
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(Etunimi));
+            }
+            if ((Sukunimi == null)) {
                 this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(Etunimi));
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(Sukunimi));
             }
-            if ((Sukunimi == null)) {
+            if ((Sahkoposti == null)) {
                 this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(Sukunimi));
-            }
-            if ((Sahkoposti == null)) {
-                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(Sahkoposti));
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(Sahkoposti));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1988,65 +1960,53 @@ SELECT Id, KurssiId, Etunimi, Sukunimi, Sahkoposti FROM Oppilaat WHERE (Id = @Id
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int Id, global::System.Nullable<int> KurssiId, string Etunimi, string Sukunimi, string Sahkoposti, int Original_Id, global::System.Nullable<int> Original_KurssiId, string Original_Etunimi, string Original_Sukunimi, string Original_Sahkoposti) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(Id));
-            if ((KurssiId.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(KurssiId.Value));
-            }
-            else {
+        public virtual int Update(int KurssiId, string Etunimi, string Sukunimi, string Sahkoposti, int Original_Id, int Original_KurssiId, string Original_Etunimi, string Original_Sukunimi, string Original_Sahkoposti, int Id) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(KurssiId));
+            if ((Etunimi == null)) {
                 this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((Etunimi == null)) {
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(Etunimi));
+            }
+            if ((Sukunimi == null)) {
                 this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Etunimi));
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Sukunimi));
             }
-            if ((Sukunimi == null)) {
+            if ((Sahkoposti == null)) {
                 this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Sukunimi));
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Sahkoposti));
             }
-            if ((Sahkoposti == null)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Sahkoposti));
-            }
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_Id));
-            if ((Original_KurssiId.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_KurssiId.Value));
-            }
-            else {
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_Id));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_KurssiId));
+            if ((Original_Etunimi == null)) {
                 this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((Original_Etunimi == null)) {
+            else {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_Etunimi));
+            }
+            if ((Original_Sukunimi == null)) {
                 this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_Etunimi));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_Sukunimi));
             }
-            if ((Original_Sukunimi == null)) {
+            if ((Original_Sahkoposti == null)) {
                 this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_Sukunimi));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_Sahkoposti));
             }
-            if ((Original_Sahkoposti == null)) {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_Sahkoposti));
-            }
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -2067,8 +2027,8 @@ SELECT Id, KurssiId, Etunimi, Sukunimi, Sahkoposti FROM Oppilaat WHERE (Id = @Id
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(global::System.Nullable<int> KurssiId, string Etunimi, string Sukunimi, string Sahkoposti, int Original_Id, global::System.Nullable<int> Original_KurssiId, string Original_Etunimi, string Original_Sukunimi, string Original_Sahkoposti) {
-            return this.Update(Original_Id, KurssiId, Etunimi, Sukunimi, Sahkoposti, Original_Id, Original_KurssiId, Original_Etunimi, Original_Sukunimi, Original_Sahkoposti);
+        public virtual int Update(int KurssiId, string Etunimi, string Sukunimi, string Sahkoposti, int Original_Id, int Original_KurssiId, string Original_Etunimi, string Original_Sukunimi, string Original_Sahkoposti) {
+            return this.Update(KurssiId, Etunimi, Sukunimi, Sahkoposti, Original_Id, Original_KurssiId, Original_Etunimi, Original_Sukunimi, Original_Sahkoposti, Original_Id);
         }
     }
     
@@ -2186,7 +2146,7 @@ SELECT Id, KurssiId, Etunimi, Sukunimi, Sahkoposti FROM Oppilaat WHERE (Id = @Id
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        private int UpdateUpdatedRows(DataSet1 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateUpdatedRows(KoulustaDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             if ((this._kurssiTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.Kurssi.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
@@ -2214,7 +2174,7 @@ SELECT Id, KurssiId, Etunimi, Sukunimi, Sahkoposti FROM Oppilaat WHERE (Id = @Id
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        private int UpdateInsertedRows(DataSet1 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateInsertedRows(KoulustaDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             if ((this._kurssiTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.Kurssi.Select(null, null, global::System.Data.DataViewRowState.Added);
@@ -2240,7 +2200,7 @@ SELECT Id, KurssiId, Etunimi, Sukunimi, Sahkoposti FROM Oppilaat WHERE (Id = @Id
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        private int UpdateDeletedRows(DataSet1 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
+        private int UpdateDeletedRows(KoulustaDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
             if ((this._oppilaatTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.Oppilaat.Select(null, null, global::System.Data.DataViewRowState.Deleted);
@@ -2290,7 +2250,7 @@ SELECT Id, KurssiId, Etunimi, Sukunimi, Sahkoposti FROM Oppilaat WHERE (Id = @Id
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public virtual int UpdateAll(DataSet1 dataSet) {
+        public virtual int UpdateAll(KoulustaDataSet dataSet) {
             if ((dataSet == null)) {
                 throw new global::System.ArgumentNullException("dataSet");
             }

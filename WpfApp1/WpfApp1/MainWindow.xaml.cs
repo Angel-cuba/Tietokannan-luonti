@@ -26,7 +26,7 @@ namespace WpfApp1
         //private const string V = "M/d/yyyy";
         //Aqui se observa la tabla de KURSSI
         private ObservableCollection<Kurssi> kurssit = new ObservableCollection<Kurssi>();
-        private DataSet1 set = new DataSet1();
+        private KoulustaDataSet set = new KoulustaDataSet();
 
         //Aqui se observa la tabla de OPPILAAT  
         private ObservableCollection<Oppilas> oppilaat = new ObservableCollection<Oppilas>();
@@ -39,14 +39,14 @@ namespace WpfApp1
 
         private void buttonLisaa_Click(object sender, RoutedEventArgs e)
         {
-            DataSet1 ds = new DataSet1();
-            DataSet1.KurssiRow rivi = ds.Kurssi.NewKurssiRow();
+            KoulustaDataSet ds = new KoulustaDataSet();
+            KoulustaDataSet.KurssiRow rivi = ds.Kurssi.NewKurssiRow();
 
             rivi.Kurssinnimi = this.textBoxKurssinnimi.Text;
             rivi.Alkamispvm = this.DatePickerAlkamisPvm.SelectedDate.Value;
             rivi.Paattymispvm = this.DatePickerPaattymisPvm.SelectedDate.Value;
             ds.Kurssi.AddKurssiRow(rivi);
-            DataSet1TableAdapters.KurssiTableAdapter adap = new DataSet1TableAdapters.KurssiTableAdapter();
+            KoulustaDataSetTableAdapters.KurssiTableAdapter adap = new KoulustaDataSetTableAdapters.KurssiTableAdapter();
             adap.Update(ds.Kurssi);
             HaeData();
         }
@@ -85,8 +85,8 @@ namespace WpfApp1
 
         {
             //DateTime dt = new DateTime();
-            DataSet1 ds = new DataSet1();
-            DataSet1TableAdapters.KurssiTableAdapter adap = new DataSet1TableAdapters.KurssiTableAdapter();
+            KoulustaDataSet ds = new KoulustaDataSet();
+             KoulustaDataSetTableAdapters.KurssiTableAdapter adap = new KoulustaDataSetTableAdapters.KurssiTableAdapter();
             kurssit.Clear();
 
             adap.Fill(ds.Kurssi);
@@ -113,7 +113,7 @@ namespace WpfApp1
             this.comboBoxKurssi.SelectedIndex = 0;
 
             //Esta es la parte de OPPILAAT
-            DataSet1TableAdapters.OppilaatTableAdapter adap2 = new DataSet1TableAdapters.OppilaatTableAdapter();
+            KoulustaDataSetTableAdapters.OppilaatTableAdapter adap2 = new KoulustaDataSetTableAdapters.OppilaatTableAdapter();
             oppilaat.Clear();
             adap2.Fill(ds.Oppilaat); 
             foreach (DataRow row in ds.Tables["Oppilaat"].Rows)
@@ -123,7 +123,7 @@ namespace WpfApp1
                 o.KurssiId = int.Parse(row["KurssiId"].ToString());
                 o.Etunimi = row["Etunimi"].ToString();
                 o.Sukunimi = row["Sukunimi"].ToString();
-                o.Sahkoposti = row["Sähköposti"].ToString();
+                o.Sahkoposti = row["Sahkoposti"].ToString();
                 oppilaat.Add(o);
             }
             this.listViewOppilaat.ItemsSource = oppilaat;
@@ -159,8 +159,8 @@ namespace WpfApp1
 
         private void buttonTallenna_Click(object sender, RoutedEventArgs e)
         {
-            DataSet1 ds = new DataSet1();
-            DataSet1TableAdapters.KurssiTableAdapter adap = new DataSet1TableAdapters.KurssiTableAdapter();
+            KoulustaDataSet ds = new KoulustaDataSet();
+            KoulustaDataSetTableAdapters.KurssiTableAdapter adap = new KoulustaDataSetTableAdapters.KurssiTableAdapter();
             adap.Fill(ds.Kurssi);
             ds.Tables["Kurssi"].Rows[this.listView.SelectedIndex]["Kurssinnimi"] = this.textBoxKurssinnimi.Text;
             ds.Tables["Kurssi"].Rows[this.listView.SelectedIndex]["Alkamispvm"] = this.DatePickerAlkamisPvm.SelectedDate;
@@ -175,8 +175,8 @@ namespace WpfApp1
         {
             if ( this.listView.SelectedIndex != -1) //jokin rivi on valittu
             {
-                DataSet1 ds = new DataSet1();
-                DataSet1TableAdapters.KurssiTableAdapter adap = new DataSet1TableAdapters.KurssiTableAdapter();
+                KoulustaDataSet ds = new KoulustaDataSet();
+                KoulustaDataSetTableAdapters.KurssiTableAdapter adap = new KoulustaDataSetTableAdapters.KurssiTableAdapter();
                 adap.Fill(ds.Kurssi);
                 ds.Tables["Kurssi"].Rows[this.listView.SelectedIndex].Delete();
                 adap.Update(ds.Kurssi);
@@ -188,8 +188,8 @@ namespace WpfApp1
         {
             if (comboBoxKurssi.SelectedIndex != 0)
             {
-                DataSet1 ds = new DataSet1();
-                DataSet1.OppilaatRow rivi = ds.Oppilaat.NewOppilaatRow();
+                KoulustaDataSet ds = new KoulustaDataSet();
+                KoulustaDataSet.OppilaatRow rivi = ds.Oppilaat.NewOppilaatRow();
                 string strkurssi = this.comboBoxKurssi.Text;
                 int paikka = strkurssi.IndexOf(' ');
                 rivi.KurssiId = int.Parse(strkurssi.Substring(0, paikka));
@@ -197,7 +197,7 @@ namespace WpfApp1
                 rivi.Sukunimi = this.textBoxSukunimi.Text;
                 rivi.Sahkoposti = this.textBoxSähköposti.Text;
                 ds.Oppilaat.AddOppilaatRow(rivi);
-                DataSet1TableAdapters.OppilaatTableAdapter adap = new DataSet1TableAdapters.OppilaatTableAdapter();
+                KoulustaDataSetTableAdapters.OppilaatTableAdapter adap = new KoulustaDataSetTableAdapters.OppilaatTableAdapter();
                 adap.Update(ds.Oppilaat);
                 HaeData();
             }
@@ -229,8 +229,8 @@ namespace WpfApp1
 
         private void buttonTallennaOppilas_Click(object sender, RoutedEventArgs e)
         {
-            DataSet1 ds = new DataSet1();
-            DataSet1TableAdapters.OppilaatTableAdapter adap = new DataSet1TableAdapters.OppilaatTableAdapter();
+            KoulustaDataSet ds = new KoulustaDataSet();
+            KoulustaDataSetTableAdapters.OppilaatTableAdapter adap = new KoulustaDataSetTableAdapters.OppilaatTableAdapter();
             adap.Fill(ds.Oppilaat);
             string strkurssi = this.comboBoxKurssi.Text;
             int paikka = strkurssi.IndexOf(' ');
@@ -249,8 +249,8 @@ namespace WpfApp1
         {
             if (this.listViewOppilaat.SelectedIndex != -1)//jokin rivi on valittu
             {
-                DataSet1 ds = new DataSet1();
-                DataSet1TableAdapters.OppilaatTableAdapter adap = new DataSet1TableAdapters.OppilaatTableAdapter();
+                KoulustaDataSet ds = new KoulustaDataSet();
+                KoulustaDataSetTableAdapters.OppilaatTableAdapter adap = new KoulustaDataSetTableAdapters.OppilaatTableAdapter();
                 adap.Fill(ds.Oppilaat);
                 ds.Tables["Oppilas"].Rows[this.listViewOppilaat.SelectedIndex].Delete();
                 adap.Update(ds.Oppilaat);
