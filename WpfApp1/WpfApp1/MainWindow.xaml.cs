@@ -43,22 +43,33 @@ namespace WpfApp1
             KoulustaDataSet.KurssiRow rivi = ds.Kurssi.NewKurssiRow();
 
             rivi.Kurssinnimi = this.textBoxKurssinnimi.Text;
-            rivi.Alkamispvm = this.DatePickerAlkamisPvm.SelectedDate.Value;
-            rivi.Paattymispvm = this.DatePickerPaattymisPvm.SelectedDate.Value;
+
+            //jos päättymispäivä ei ole valittu
+            if (this.DatePickerAlkamisPvm.SelectedDate == null)
+            {
+                rivi.Alkamispvm = DateTime.Now;
+            }
+            else
+            {
+                rivi.Alkamispvm = this.DatePickerAlkamisPvm.SelectedDate.Value;
+
+            }
+
+            //jos päättymispäivää ei ole valittu
+            if (this.DatePickerAlkamisPvm.SelectedDate == null)
+            {
+                rivi.Paattymispvm = DateTime.Now;
+            }
+            else
+            {
+                rivi.Paattymispvm = this.DatePickerPaattymisPvm.SelectedDate.Value;
+            }
             ds.Kurssi.AddKurssiRow(rivi);
             KoulustaDataSetTableAdapters.KurssiTableAdapter adap = new KoulustaDataSetTableAdapters.KurssiTableAdapter();
             adap.Update(ds.Kurssi);
             HaeData();
         }
-        //
-        // Summary:
-        //     Gets a System.DateTime object that is set to the current date and time on this
-        //     computer, expressed as the local time.
-        //
-        // Returns:
-        //     An object whose value is the current local date and time.
-        //public static DateTime Now { get; }
-
+        
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -132,6 +143,14 @@ namespace WpfApp1
             TyhjaaKurssiLiittyma();
             TyhjaaOppilasLiittyma();
 
+            //Aqui está la tercera parte KURSIIN OPPILAAT
+            this.comboBoxKurssinimet.Items.Clear();
+            this.comboBoxKurssinimet.Items.Add("valitse kurssi");
+            foreach (Kurssi k in kurssit)
+            {
+                this.comboBoxKurssinimet.Items.Add(k.Id + " " + k.Kurssinnimi);
+            }
+            this.comboBoxKurssinimet.SelectedIndex = 0;
         }
 
         private void buttonMutta_Click(object sender, RoutedEventArgs e)
@@ -261,6 +280,36 @@ namespace WpfApp1
         private void comboBoxKurssi_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void comboBoxKurssinimet_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ObservableCollection<Oppilas> kurssinoppilaat = new ObservableCollection<Oppilas>();
+            KoulustaDataSet ds = new KoulustaDataSet();
+
+            KoulustaDataSetTableAdapters.OppilaatTableAdapter adap2 = new KoulustaDataSetTableAdapters.OppilaatTableAdapter();
+            kurssinoppilaat.Clear();
+            adap2.Fill(ds.Oppilaat);
+            foreach (DataRow row in ds.Tables["Oppilaat"].Rows)
+            {
+                Oppilas o = new Oppilas();
+                o.Id = int.Parse(row["Id"].ToString());
+                o.KurssiId = int.Parse(row["KurssiId"].ToString());
+                o.Etunimi = row["Etunimi"].ToString();
+                o.Sukunimi = row["Sukunimi"].ToString();
+                o.Sahkoposti = row["Sahkoposti"].ToString();
+                if (this.comboBoxKurssinimet.SelectedIndex > 0)
+                {
+                    string strkurssi = this.comboBoxKurssinimet.SelectedValue.ToString();
+                    int paikka = strkurssi.IndexOf(' ');
+                    int kurssiid = int.Parse(strkurssi.Substring(0, paikka));
+                    if (o.KurssiId == kurssiid)
+                    {
+                        kurssinoppilaat.Add(o);
+                    }
+                }
+            }
+            this.listViewKurssiOppilaat.ItemsSource = kurssinoppilaat;
         }
     }
 }

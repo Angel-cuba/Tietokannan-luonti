@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Tietokanta" Height="450" Width="625" Background="Gray" Loaded="Window_Loaded">
+        Title="Tietokanta" Height="480" Width="665" Background="Gray" Loaded="Window_Loaded">
     <TabControl x:Name="tabControl">
         <TabItem Header="Kurssit">
             <Grid Background="Azure">
@@ -19,12 +19,12 @@
                 <DatePicker x:Name="DatePickerPaattymisPvm" HorizontalAlignment="Left" Margin="166,110,0,0" VerticalAlignment="Top" Width="190"/>
                 <Button x:Name="buttonLisaa" Content="Lisää" Background="Bisque" HorizontalAlignment="Left" Margin="166,151,0,0" VerticalAlignment="Top" Width="190" Click="buttonLisaa_Click"/>
 
-                <ListView x:Name="listView" Background="WhiteSmoke" HorizontalAlignment="Left" Height="154" Margin="50,202,0,0" VerticalAlignment="Top" Width="432">
+                <ListView x:Name="listView" Background="WhiteSmoke" HorizontalAlignment="Left" Height="174" Margin="50,202,0,0" VerticalAlignment="Top" Width="502">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}"/>
                             <GridViewColumn Width="150" Header="Kurssin nimi" DisplayMemberBinding="{Binding Kurssinnimi}"/>
-                            <GridViewColumn Width="100" Header="Alkamispäivä" DisplayMemberBinding="{Binding Alkamispvm}"/>
+                            <GridViewColumn Width="150" Header="Alkamispäivä" DisplayMemberBinding="{Binding Alkamispvm}"/>
                             <GridViewColumn Width="150" Header="Paattymispäivä" DisplayMemberBinding="{Binding Paattymispvm}"/>
                         </GridView>
                     </ListView.View>
@@ -38,36 +38,50 @@
         <TabItem Header="Oppilaat">
             <Grid Background="LightBlue">
                 <ComboBox x:Name="comboBoxKurssi" HorizontalAlignment="Left" Margin="112,27,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="comboBoxKurssi_SelectionChanged"/>
-                
+
                 <!--Aqui va la parte del SUKUNIMI-->
                 <Label x:Name="label3" Content="Etunimi" HorizontalAlignment="Left" Margin="19,70,0,0" VerticalAlignment="Top"/>
                 <TextBox x:Name="textBoxEtunimi" HorizontalAlignment="Left" Height="23" Margin="112,70,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-                
+
                 <!--Aqui va la caja de ETUNIMI-->
                 <Label x:Name="label4" Content="Sukunimi" HorizontalAlignment="Left" Margin="19,120,0,0" VerticalAlignment="Top"/>
                 <TextBox x:Name="textBoxSukunimi" HorizontalAlignment="Left" Height="23" Margin="112,120,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-                
+
                 <!--Aqui va la caja de SÄHKÖPOSTI-->
                 <Label x:Name="label5" Content="Sähköposti" HorizontalAlignment="Left" Margin="19,170,0,0" VerticalAlignment="Top"/>
                 <TextBox x:Name="textBoxSähköposti" HorizontalAlignment="Left" Height="23" Margin="112,170,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-                
+
                 <!--Aqui va el BUTTON-->
                 <Button x:Name="buttonLisaaOppilas" Content="Lisää" Background="MediumSlateBlue" HorizontalAlignment="Left" Margin="112,220,0,0" VerticalAlignment="Top" Width="120" Click="buttonLisaaOppilas_Click"/>
                 <ListView x:Name="listViewOppilaat" HorizontalAlignment="Left" Height="101" Margin="19,270,0,0" VerticalAlignment="Top" Width="432">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Width="23" Header="Id" DisplayMemberBinding="{Binding Id}"/>
-                        <GridViewColumn Width="101" Header="KurssiId" DisplayMemberBinding="{Binding KurssiId}"/>
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Width="23" Header="Id" DisplayMemberBinding="{Binding Id}"/>
+                            <GridViewColumn Width="101" Header="KurssiId" DisplayMemberBinding="{Binding KurssiId}"/>
                             <GridViewColumn Width="105" Header="Etunimi" DisplayMemberBinding="{Binding Etunimi}"/>
                             <GridViewColumn Width="105" Header="Sukunimi" DisplayMemberBinding="{Binding Sukunimi}"/>
                             <GridViewColumn Width="105" Header="Sähköposti" DisplayMemberBinding="{Binding Sähköposti}"/>
 
                         </GridView>
                     </ListView.View>
-                 </ListView>
+                </ListView>
                 <Button x:Name="buttonMuutaOppilas" Content="Muuta" HorizontalAlignment="Left" Margin="299,220,0,0" VerticalAlignment="Top" Width="75" Background="LightCyan" Click="buttonMuutaOppilas_Click"/>
                 <Button x:Name="buttonTallennaOppilas" Content="Tallenna" HorizontalAlignment="Left" Margin="299,194,0,0" Visibility="Hidden" VerticalAlignment="Top" Width="75" Background="LightCyan" Click="buttonTallennaOppilas_Click"/>
                 <Button x:Name="buttonPoistaOppilas" Content="Poista" HorizontalAlignment="Left" Margin="22,220,0,0" VerticalAlignment="Top" Width="55" Background="LightCyan" Click="buttonPoistaOppilas_Click"/>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Kursiin oppilaat">
+            <Grid Background="Bisque">
+                <ComboBox x:Name="comboBoxKurssinimet" HorizontalAlignment="Left" Margin="48.515,26,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="comboBoxKurssinimet_SelectionChanged" Grid.ColumnSpan="2" Grid.Column="1"/>
+                <ListView x:Name="listViewKurssiOppilaat" HorizontalAlignment="Left" Height="247" Width="401" VerticalAlignment="Top" Margin="48.515,69,0,0" Grid.ColumnSpan="2" Grid.Column="1">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Width="60" Header="Etunimi" DisplayMemberBinding="{Binding Etunimi}"/>
+                            <GridViewColumn Width="70" Header="Sukunimi" DisplayMemberBinding="{Binding Sukunimi}"/>
+                            <GridViewColumn Width="80" Header="Sähköposti" DisplayMemberBinding="{Binding Sahkoposti}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
             </Grid>
         </TabItem>
     </TabControl>
